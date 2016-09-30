@@ -40,7 +40,7 @@ arev reverb asig, 5
 endin
 </CsInstruments>
 <CsScore>
-//Kick
+//Sine - had thoughts about making a kick (but yeah it's sample only assignment), maybe use it for ring-mod
 f1 0   1024 10  1
 
 //Splash Rhytmic Sound
