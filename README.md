@@ -3,7 +3,7 @@ This is my cSound composition library.
 
 1. [Aluminum March](https://github.com/juniorxsound/cSound/tree/master/Aluminum%20March)
 
-[CSD Web Player](https://github.com/juniorxsound/cSound/tree/master/CSD%20Player)
+**[.csd Web Player](https://github.com/juniorxsound/cSound/tree/master/CSD%20Player)**
 
 ![alt text](https://github.com/juniorxsound/cSound/blob/master/assets/cs-logo.png "cSound Logo")
 
