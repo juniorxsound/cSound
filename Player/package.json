@@ -1,0 +1,25 @@
+{
+  "name": "csd-player",
+  "version": "1.0.0",
+  "description": "A player for playing cSound .csd files in the browser",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "csound",
+    "sound",
+    "interactive",
+    "web",
+    "audio",
+    "dsp"
+  ],
+  "author": "Or Fleisher",
+  "license": "MIT",
+  "dependencies": {
+    "browserify": "^13.1.0",
+    "jquery": "^3.1.1",
+    "uglifyjs": "^2.4.10",
+    "watchify": "^3.7.0"
+  }
+}

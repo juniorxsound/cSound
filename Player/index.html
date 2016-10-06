@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>cSound Player</title>
+	<style>
+  textarea.console { font-family: "Courier New"; color: #FCF477;
+                     background-color: #007777 }
+  </style>
+
+  <!--cSound for pNaCl-->
+  <script src="lib/csound.js"></script>
+</head>
+
+<body>
+
+  <p>
+    <input type="file" id="files" name="file" />
+    <button id="playButton">Play</button>
+    </p>
+    <textarea class="console" cols="55" rows="13" id="console"
+    value="">Csound: not loaded</textarea>
+    <!--pNaCl csound module-->
+    <div id="engine"></div>
+
+<script src="src/app.js"></script>
+</body>
+</html>
