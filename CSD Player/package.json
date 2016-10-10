@@ -4,7 +4,9 @@
   "description": "A player for playing cSound .csd files in the browser",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "http-server",
+    "watch": "watchify src/app.js -o dist/bundle.js -v",
+    "build": "browserify src/app.js  | uglifyjs -mc warnings=false > dist/bundle.min.js"
   },
   "repository": {
     "type": "git",

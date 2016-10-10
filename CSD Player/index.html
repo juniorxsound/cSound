@@ -4,8 +4,13 @@
 	<meta charset="utf-8">
 	<title>cSound Player</title>
 	<style>
-  textarea.console { font-family: "Courier New"; color: #FCF477;
-                     background-color: #007777 }
+	textarea.console{
+	border: none;
+	}
+  textarea.console {
+	color: #000000;
+  background-color: #ffffff;
+	}
   </style>
 
   <!--cSound for pNaCl-->
@@ -18,11 +23,11 @@
     <input type="file" id="files" name="file" />
     <button id="playButton">Play</button>
     </p>
-    <textarea class="console" cols="55" rows="13" id="console"
-    value="">Csound: not loaded</textarea>
+    <textarea class="console" cols="100" rows="10" id="console"
+    value="">cSound: not loaded</textarea>
     <!--pNaCl csound module-->
     <div id="engine"></div>
 
-<script src="src/app.js"></script>
+<script src="dist/bundle.js"></script>
 </body>
 </html>

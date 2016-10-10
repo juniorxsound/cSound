@@ -61,11 +61,14 @@ var csound = (function() {
     var loadPercentString;
     if (event.lengthComputable && event.total > 0) {
       loadPercent = (event.loaded / event.total) * 100.0;
-      loadPercentString = 'loading... (' + loadPercent.toFixed(2) + '%)';
+      loadPercentString = loadPercent.toFixed(2) + '%  loaded';
+        if (loadPercentString == '100% loaded'){
+          loadPercentString = 'csound module loaded';
+        }
     } else {
        loadPercent = -1.0;
        progressCount++;
-       loadPercentString = 'loading... (count=' + progressCount + ')';
+       loadPercentString = 'initiating';
     }
     updateStatus(loadPercentString);
   }
