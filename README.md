@@ -1,7 +1,8 @@
 # cSound Composition Library
 This is my cSound composition library.
 
-1. [Aluminum March](https://github.com/juniorxsound/cSound/tree/master/Aluminum%20March)
+1. [Atari 2600](https://github.com/juniorxsound/cSound/tree/master/Aatari%202600)
+2. [Aluminum March](https://github.com/juniorxsound/cSound/tree/master/Aluminum%20March)
 
 **[.csd Web Player](https://github.com/juniorxsound/cSound/tree/master/CSD%20Player)**
 
