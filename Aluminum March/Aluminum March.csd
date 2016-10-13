@@ -10,10 +10,11 @@ nchnls = 2
 0dbfs = 1
 //Instrument 1
 instr 1
-  kVar  line    p4, p3, p6
-
+  //Line segment between p4 and p6 over p3 time
+  ;kVar  line    p4, p3, p6
+  //Transpose based on line segment
   kTrans linseg p6, p7, p8, p9, -2
-
+  //Reading the file => outputing it
   aL, aR diskin p5, kTrans, 3, 4, 0, 32
     outs  aL, aR
 endin
