@@ -28,7 +28,7 @@ nchnls = 1
     //Scale the output by the correct p-Field (p4)
     aOsc = aTable * iAmp
     //Export the thing
-    aOsc out
+    out aOsc
 
   endin
 
@@ -37,7 +37,7 @@ nchnls = 1
 //Sine Wave
 f 1 0 16384 10 1
 
-i 0 1 1 1 880 16384 1
+i 1 1 1 1 880 16384 1
 
 </CsScore>
 </CsoundSynthesizer>
