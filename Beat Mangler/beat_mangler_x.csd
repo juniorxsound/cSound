@@ -1,14 +1,10 @@
-Beat Mangler Loop Generator (class version)
+Beat Mangler X
 Jacob Joaquin & Jean-Luc Cohen-Sinclair
-November 1, 2010
+October 3, 2010
 jacobjoaquin@gmail.com
 csoundblog.com
 
-
 <CsoundSynthesizer>
-<CsOptions>
--odac
-</CsOptions>
 <CsInstruments>
 sr = 44100
 kr = 44100
@@ -59,46 +55,6 @@ instr 1
 endin
 
 instr 2
-    ibpm = p4         ; Beats per minute
-    iloop_beats = p5  ; Number of beats in loop
-    in_loops = p6     ; Number of loops to generate
-
-    idur = 60 / ibpm * iloop_beats  ; Convert BPM to duration
-    i_counter init 0                ; Loop iterator
-    istart init 0                   ; Start time of loop
-
-    ; Set static values for 'Beat Mangler X'
-    iamp = 1
-    istutter_min = 2
-    istutter_max = 7
-
-    start_loop:
-
-        ; Randomize 'Beat Mangler X' parameter
-        istart = i_counter * idur
-        ires = 8
-        ienv_fn = int(rnd(3)) + 1
-        istep_odds = rnd(0.5)
-        istutter_odds = rnd(0.5)
-
-        ; Create 'Beat Mangler X' string event
-        Sevent sprintf "i 3 %f %f %f %f %d %f %d %d %f %f", istart, idur, \
-                       iamp, ires, ienv_fn, istep_odds, istutter_min,     \
-                       istutter_max, istutter_odds, i_counter
-
-        ; Generate event
-        scoreline_i Sevent
-
-    loop_lt i_counter, 1, in_loops, start_loop
-
-    ; Turn on instr 4 to keep Csound engine running
-    event_i "i", 4, 0, idur * in_loops
-
-    ; Turnoff this instrument
-    turnoff
-endin
-
-instr 3
     idur = p3            ; Duration
     iamp = p4            ; Amplitude
     ires = p5            ; Resolution of mangler, number of steps
@@ -107,7 +63,6 @@ instr 3
     istutter_min = p8    ; Min number of stutters per stutter
     istutter_max = p9    ; Max number of stutters per stutter
     istutter_odds = p10  ; Odds that new step will stutter (0..1)
-    i_index = p11        ; Index of generated audio file
 
     ; Initialize values
     kstep init 0
@@ -167,15 +122,7 @@ instr 3
     a_amp = a_amp * iamp
 
     ; Output
-    aleft = aleft * a_amp
-    aright = aright * a_amp
-    //Sfile sprintf "./output/bmx_%d.aif", i_index
-    //fout Sfile, 2, aleft, aright
-    out aleft aright
-endin
-
-instr 4
-    ; Keep Csound engine running
+    outs aleft * a_amp, aright * a_amp
 endin
 
 </CsInstruments>
@@ -186,12 +133,54 @@ f 1 0 8192 7 1 8192 0
 f 2 0 8192 7 1 4096 0 4096 0
 f 3 0 8192 7 1 8192 1
 
-; Load loop
-i 1 0 1 "amen.wav" 0.5 0    ; Use measure 1 of loop
-;i 1 0 1 "amen.wav" 0.5 0.5  ; Use measure 2 of loop
+; Tempo
+t 0 180
 
-; Generate 100 loops at 180 BPMs
-i 2 0 1 180 4 100
+; Load loop
+;i 1 0 1 "amen.wav" 0.5 0    ; Use measure 1 of loop
+i 1 0 1 "amen.wav" 0.5 0.5  ; Use measure 2 of loop
+
+; Play mangled loop
+i 2 0 4 0.5  16 3 0     2 4  0
+i 2 + . .    .  . 0.25  . .  0
+i 2 + . .    .  . 0     . .  0.25
+i 2 + . .    .  . 0.85  . .  0.125
+i 2 + . 0.5  8  1 0.25  2 5  0.125
+i 2 + . .    .  . .     . .  .
+i 2 + . .    .  . 0.125 . .  0.5
+i 2 + . 0.8  16 2 0.25  7 16 1
+i 2 + . 0.5  16 3 0     2 4  0.125
+i 2 + . .    .  . 0.25  . .  .
+i 2 + . .    .  . 0     . .  .
+i 2 + . 0.7  16 2 0     . .  0
+i 2 + . 0.5  16 3 0     2 7  0.125
+i 2 + . .    .  . 0.25  . .  .
+i 2 + . .    .  . .     . .  .
+i 2 + . .    .  . 0.125 . .  .
+i 2 + . 0.5  16 1 0     2 9  1
+i 2 + . .    .  . .     . .  .
+i 2 + . .    .  . .     . .  .
+i 2 + . 0.8  16 2 0     2 7  0
+i 2 + . 0.5  16 1 0     2 9  1
+i 2 + . .    .  . .     . .  .
+i 2 + . .    .  . .     . .  .
+i 2 + . .    .  . 0.25  4 13 .
+i 2 + . 0.5  16 3 0     2 5  0
+i 2 + . .    .  . 1     . .  .
+i 2 + . .    .  . 0     . .  .
+i 2 + . 0.7  16 2 1     7 12 0.75
+i 2 + . 0.5  16 3 0     2 5  0.125
+i 2 + . .    .  . 1     . .  0
+i 2 + . .    .  . 0     . .  0.125
+i 2 + . .    .  . 1     . .  0
+i 2 + . 0.35 8  1 0     2 2  0
+i 2 + . <    .  . <     . <  <
+i 2 + . <    .  . <     . <  <
+i 2 + . <    .  . <     . <  <
+i 2 + . <    .  . <     . <  <
+i 2 + . <    .  . <     . <  <
+i 2 + . <    .  . <     . <  <
+i 2 + . 0.01 .  . 1     . 9  1
 
 </CsScore>
 </CsoundSynthesizer>
