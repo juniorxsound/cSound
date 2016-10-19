@@ -3,7 +3,7 @@ Jacob Joaquin & Jean-Luc Cohen-Sinclair
 November 1, 2010
 jacobjoaquin@gmail.com
 csoundblog.com
-
+//
 
 <CsoundSynthesizer>
 <CsOptions>
@@ -169,9 +169,8 @@ instr 3
     ; Output
     aleft = aleft * a_amp
     aright = aright * a_amp
-    //Sfile sprintf "./output/bmx_%d.aif", i_index
-    //fout Sfile, 2, aleft, aright
-    out aleft aright
+    Sfile sprintf "./output/bmx_%d.aif", i_index
+    fout Sfile, 2, aleft, aright
 endin
 
 instr 4
