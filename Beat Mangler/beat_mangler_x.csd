@@ -27,6 +27,7 @@ gisize init 0
 seed 0
 
 instr 1
+
     gS_sample = p4  ; File name of loop
     isize = p5      ; Size of sample to use. 1 = full sample, 0.5 = half
     ioffset = p6    ; Sample start offset. 0 = start, 0.5 = half way in
@@ -55,6 +56,18 @@ instr 1
 endin
 
 instr 2
+
+
+    //Start Serial Communication
+    iSerialPort	serialBegin	"/dev/cu.usbmodem1421", 9600
+
+    //Read the values into a slower k-rate variable
+    kType	serialRead iSerialPort
+
+    printk2 kType
+
+
+
     idur = p3            ; Duration
     iamp = p4            ; Amplitude
     ires = p5            ; Resolution of mangler, number of steps
@@ -102,11 +115,15 @@ instr 2
         ; Stutter right
         kstutter2 = 1
         krandom random 0, 1
-        if krandom < istutter_odds then
-            krandom2 random istutter_min, istutter_max
-            kstutter2 = 1 / floor(krandom2)
-        endif
 
+
+    endif
+
+    if(kType == 49.00000)then
+      if krandom < istutter_odds then
+          krandom2 random istutter_min, istutter_max
+          kstutter2 = 1 / floor(krandom2) + 16
+      endif
     endif
 
     ; Add stutter, bias and convert step phasor units to samples
@@ -147,7 +164,7 @@ i 2 + . .    .  . 0     . .  0.25
 i 2 + . .    .  . 0.85  . .  0.125
 i 2 + . 0.5  8  1 0.25  2 5  0.125
 i 2 + . .    .  . .     . .  .
-i 2 + . .    .  . 0.125 . .  0.5
+i 2 + . .    .  . 0.25 . .  0.5
 i 2 + . 0.8  16 2 0.25  7 16 1
 i 2 + . 0.5  16 3 0     2 4  0.125
 i 2 + . .    .  . 0.25  . .  .
@@ -156,7 +173,7 @@ i 2 + . 0.7  16 2 0     . .  0
 i 2 + . 0.5  16 3 0     2 7  0.125
 i 2 + . .    .  . 0.25  . .  .
 i 2 + . .    .  . .     . .  .
-i 2 + . .    .  . 0.125 . .  .
+i 2 + . .    .  . 0.25 . .  .
 i 2 + . 0.5  16 1 0     2 9  1
 i 2 + . .    .  . .     . .  .
 i 2 + . .    .  . .     . .  .

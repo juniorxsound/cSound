@@ -1,4 +1,5 @@
 int button = 4;
+int slider;
 
 int lastState;
 int currentState;
@@ -13,11 +14,7 @@ void setup() {
 
 void loop() {
       currentState = digitalRead(4);
-      if (Serial.read() == "1"){
-      digitalWrite(13, HIGH);
-      delay(500);
-      digitalWrite(13, LOW);
-      }
+      
       if(currentState == 1 && lastState == 0){
         Serial.write("1");
       }
