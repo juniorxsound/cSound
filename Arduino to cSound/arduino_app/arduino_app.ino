@@ -1,24 +1,29 @@
-int slider;
+int button = 4;
+
+int lastState;
+int currentState;
 
 void setup() {
-  //Begin serial communications
+  // enable serial communication
   Serial.begin(9600);
+
+  pinMode(13, OUTPUT);
+
 }
 
 void loop() {
-  
-  //Wait for cSound to send a 'I am ready' byte  
-  if(Serial.available() > 0){
-    
-  //Read the slider
-  slider = analogRead(A0)/4;
+      currentState = digitalRead(4);
+      if (Serial.read() == "1"){
+      digitalWrite(13, HIGH);
+      delay(500);
+      digitalWrite(13, LOW);
+      }
+      if(currentState == 1 && lastState == 0){
+        Serial.write("1");
+      }
+        // while we are here, get our knob value and send it to csound
+        //int sensorValue = analogRead(A0);
+        //Serial.write(sensorValue/4); // scale to 1-byte range (0-255)
+       lastState = currentState;
 
-  //Write the slider value devided by four so it fits in a single byte
-  Serial.write(slider);
-
-  //Delay the loop
-  delay(10);
-  
-  }
-  
 }
